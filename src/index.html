@@ -3,27 +3,147 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Rigo with Vanilla.js</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-      crossorigin="anonymous"
-    />
-    <link rel="shortcut icon" href="./4geeks.ico" />
-  </head>
-  <body>
-    <div class="container-fluid text-center">
-      <h1 class="mt-5">Hello Rigo!</h1>
-      <img src="./rigo-baby.jpg" />
-      <p class="alert alert-warning mt-4">
-        If this text is <b>not</b> centered and <b>yellow</b>, you probably have
-        an error
-      </p>
-      <div class="fixed-bottom p-4">
-        Made with ❤️ by
-        <a href="https://www.4geeksacademy.com">4Geeks Academy</a>
-      </div>
-    </div>
-  </body>
+    <title>HTML FORM</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body>
+
+    <div class="container p-5 border border-2 pb-2">
+        <div class="header col-12 bg-light border border-2 p-2 mb-3">
+            <h3>Payment form example</h3>
+        </div>
+        <div>
+            <div class="alert alert-danger" role="alert">
+                Some fields are missing.
+            </div>
+
+            <!--CARD-CVC-AMOUNT-->
+        </div>
+        <div class="row p-2">
+            <div class="col-md-6">
+                <label for="inputCard" class="form-label">#Card</label>
+                <input type="text" class="form-control" id="inputCard" value="xxx xxx xxx xxx">
+            </div>
+            <div class="col-md-4 position relative">
+                <label for="inputcvc" class="form-label">#CVC</label>
+                <input type="text" class="form-control" id="inputcvc" value="xxx">
+            </div>
+            <div class="col-md-2">
+                <label for="inputamount" class="form-label">#Amount</label>
+                <input type="text" class="form-control" id="inputamount" value="Amount">
+            </div>
+        </div>
+
+        <!--NAME-LASTNAME-->
+        <div class="row gx-5">
+            <div class="col-6 mb-3">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name">
+                <div id="City" class="form-text"></div>
+            </div>
+            <div class=" col-6 mb-3">
+                <label for="LastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="LastName">
+            </div>
+        </div>
+        <!--CITY-STATE-POSTALCODE-->
+        <div class="row p-2">
+            <div class="col-md-6">
+                <label for="City" class="form-label">City</label>
+                <input type="text" class="form-control" id="City">
+            </div>
+            <div class="col-md-4 position-relative">
+                <label for="State" class="form-label">State</label>
+                <select class="form-select" id="State">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="PostalCode" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="PostalCode">
+            </div>
+        </div>
+
+        <!--CARDS-->
+        <div class="row">
+            <div class="col-6">
+                <h6>We accept:</h6>
+                <div class="form-check form-check-inline mb-3">
+                    <i class="fa-brands fa-cc-mastercard fa-lg"></i>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1"></label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <i class="fa-brands fa-cc-visa fa-lg"></i>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2"></label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <i class="fa-brands fa-cc-paypal fa-lg"></i>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                        value="option3">
+                    <label class="form-check-label" for="inlineRadio3"></label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <i class="fa-brands fa-cc-apple-pay fa-lg"></i>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                        value="option4">
+                    <label class="form-check-label" for="inlineRadio4"></label>
+                </div>
+            </div>
+
+            <!--message-->
+
+            <div class="col-6">
+                <fieldset>
+                    <h6>Message</h6>
+                    <div class="form-floating">
+                        <textarea class="form-control " placeholder="Leave a comment here" id="floatingTextarea2"
+                            style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Comments</label>
+                    </div>
+                    <p>Add any notes here.</p>
+                </fieldset>
+            </div>
+        </div>
+
+
+        <!--BOTON-->
+        <div class="footer col-12 bg-light border border-2 p-2">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+                <button class="btn btn-secondary me-md-2" type="button">Cancel</button>
+                <button class="btn btn-primary" type="button">Send</button>
+            </div>
+            </form>
+        </div>
+
+        <div class="fixed-bottom p-4 ">
+          Made with ❤️ by
+          <a href="https://github.com/sm-nat" target="_blank">Natalia Silva Medina</a>
+        </div>
+
+        <!-- Scripts de JavaScript van al final del cuerpo para mejorar el rendimiento -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!-- Agrega enlaces a tus scripts JavaScript aquí -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+            <script src="/src/app.js"></script>
+
+</body>
+</div>
+
 </html>
+
+    
+  
