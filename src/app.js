@@ -5,8 +5,6 @@ import "./assets/img/4geeks.ico";
 import { left } from "@popperjs/core";
 
 window.onload = function() {
-  //write your code here
-
   let regexCardNumber = /^[0-9]{16}$/;
   let regexCVC = /^[0-9]{3}$/;
   let regexAmount = /^[0-9]+(\.[0-9]{1,2})?$/;
@@ -22,25 +20,43 @@ window.onload = function() {
     form.addEventListener("submit", function(e) {
       e.preventDefault();
 
-      let {
-        Card,
-        Amount,
-        CVC,
-        Name,
-        LastName,
-        City,
-        State,
-        PostalCode
-      } = e.target;
+      let card = document.querySelector("#usercard");
+      let amount = document.querySelector("#useramount");
+      let cvc = document.querySelector("#usercvc");
+      let name = document.querySelector("#username");
+      let lastName = document.querySelector("#userlastname");
+      let city = document.querySelector("#usercity");
+      let state = document.querySelector("#userstate");
+      let postalCode = document.querySelector("#userpostalcode");
 
-      let Card = document.querySelector("#usercard");
-      let Amount = document.querySelector("#useramount");
-      let CVC = document.querySelector("#usercvc");
-      let Name = document.querySelector("#username");
-      let LastName = document.querySelector("#userlastname");
-      let City = document.querySelector("#usercity");
-      let State = document.querySelector("#userstate");
-      let PostalCode = document.querySelector("#userpostalcode");
+      function validateForm() {
+        let isValid = true;
+
+        const validateField = (regex, value) => regex.test(value);
+
+        const fields = [
+          { name: "Card", regex: regexCardNumber, value: card.value },
+          { name: "Amount", regex: regexAmount, value: amount.value },
+          { name: "CVC", regex: regexCVC, value: cvc.value },
+          { name: "Name", regex: regexName, value: name.value },
+          { name: "LastName", regex: regexLastName, value: lastName.value },
+          { name: "City", regex: regexCity, value: city.value },
+          {
+            name: "PostalCode",
+            regex: regexPostalCode,
+            value: postalCode.value
+          }
+        ];
+
+        fields.forEach(field => {
+          if (!validateField(field.regex, field.value)) {
+            isValid = false;
+            alert(`Invalid ${field.name}!`);
+          }
+        });
+
+        return isValid;
+      }
 
       if (validateForm()) {
         alert("Sending...");
@@ -48,11 +64,5 @@ window.onload = function() {
         missingFieldsAlert.style.display = "block";
       }
     });
-
-    function validateForm() {
-      // Agrega lógica de validación aquí
-      // Retorna true si el formulario es válido, de lo contrario, false
-      return true;
-    }
   });
 };
