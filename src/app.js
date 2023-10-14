@@ -13,12 +13,16 @@ window.onload = function() {
   let regexCity = /^[A-Za-z]+$/;
   let regexPostalCode = /^[0-9]{6}$/;
 
+  let isValid = true;
+
   document.addEventListener("DOMContentLoaded", function() {
     let form = document.querySelector(".myForm");
     let missingFieldsAlert = document.getElementById("missingFieldsAlert");
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
+      console.log(e);
+      console.log(validateForm());
 
       let card = document.querySelector("#usercard");
       let amount = document.querySelector("#useramount");
@@ -26,12 +30,9 @@ window.onload = function() {
       let name = document.querySelector("#username");
       let lastName = document.querySelector("#userlastname");
       let city = document.querySelector("#usercity");
-      let state = document.querySelector("#userstate");
       let postalCode = document.querySelector("#userpostalcode");
 
       function validateForm() {
-        let isValid = true;
-
         const validateField = (regex, value) => regex.test(value);
 
         const fields = [
@@ -63,6 +64,7 @@ window.onload = function() {
       } else {
         missingFieldsAlert.style.display = "block";
       }
+      console.log(validateForm());
     });
   });
 };
