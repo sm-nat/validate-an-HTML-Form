@@ -1,11 +1,8 @@
-/* eslint-disable */
 import "bootstrap";
 import "./style.css";
-import "./assets/img/4geeks.ico";
-import { left } from "@popperjs/core";
 
 window.onload = function() {
-  let regexCardNumber = /^[0-9]{16}$/;
+  let regexCardNumber = /^[0-9]{9}$/;
   let regexCVC = /^[0-9]{3}$/;
   let regexAmount = /^[0-9]+(\.[0-9]{1,2})?$/;
   let regexName = /^[A-Za-z]+$/;
@@ -13,58 +10,100 @@ window.onload = function() {
   let regexCity = /^[A-Za-z]+$/;
   let regexPostalCode = /^[0-9]{6}$/;
 
-  let isValid = true;
-
-  document.addEventListener("DOMContentLoaded", function() {
-    let form = document.querySelector(".myForm");
-    let missingFieldsAlert = document.getElementById("missingFieldsAlert");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      console.log(e);
-      console.log(validateForm());
-
-      let card = document.querySelector("#usercard");
-      let amount = document.querySelector("#useramount");
-      let cvc = document.querySelector("#usercvc");
-      let name = document.querySelector("#username");
-      let lastName = document.querySelector("#userlastname");
-      let city = document.querySelector("#usercity");
-      let postalCode = document.querySelector("#userpostalcode");
-
-      function validateForm() {
-        const validateField = (regex, value) => regex.test(value);
-
-        const fields = [
-          { name: "Card", regex: regexCardNumber, value: card.value },
-          { name: "Amount", regex: regexAmount, value: amount.value },
-          { name: "CVC", regex: regexCVC, value: cvc.value },
-          { name: "Name", regex: regexName, value: name.value },
-          { name: "LastName", regex: regexLastName, value: lastName.value },
-          { name: "City", regex: regexCity, value: city.value },
-          {
-            name: "PostalCode",
-            regex: regexPostalCode,
-            value: postalCode.value
-          }
-        ];
-
-        fields.forEach(field => {
-          if (!validateField(field.regex, field.value)) {
-            isValid = false;
-            alert(`Invalid ${field.name}!`);
-          }
-        });
-
-        return isValid;
+  let form = document.querySelector(".myform");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    //boton para cancelar todo
+    let cancelButton = document.getElementById("cancelButton");
+    cancelButton.addEventListener("click", function() {
+      let form = document.querySelector(".myform");
+      form.reset();
+      let invalidInputs = form.querySelectorAll(".is-invalid");
+      for (let input of invalidInputs) {
+        input.classList.remove("is-invalid");
+        input.nextElementSibling.textContent = "";
       }
-
-      if (validateForm()) {
-        alert("Sending...");
-      } else {
-        missingFieldsAlert.style.display = "block";
-      }
-      console.log(validateForm());
+      document.querySelector("#alert").classList.remove("show");
     });
+
+    // Restablece la alerta y las clases de validación en cada envío del formulario
+    document.querySelector("#alert").classList.remove("show");
+    document.querySelectorAll(".is-invalid").forEach(element => {
+      element.classList.remove("is-invalid");
+    });
+
+    let inputCard = document.querySelector("#inputCard");
+    let inputAmount = document.querySelector("#inputamount");
+    let inputCVC = document.querySelector("#inputcvc");
+    let inputName = document.querySelector("#Name");
+    let inputLastName = document.querySelector("#LastName");
+    let inputCity = document.querySelector("#City");
+    let inputPostalCode = document.querySelector("#PostalCode");
+
+    let valid = true;
+    //validacion
+    if (!inputCard.value) {
+      inputCard.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexCardNumber.test(inputCard.value)) {
+      inputCard.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputAmount.value) {
+      inputAmount.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexAmount.test(inputAmount.value)) {
+      inputAmount.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputCVC.value) {
+      inputCVC.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexCVC.test(inputCVC.value)) {
+      inputCVC.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputName.value) {
+      inputName.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexName.test(inputName.value)) {
+      inputName.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputLastName.value) {
+      inputLastName.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexLastName.test(inputLastName.value)) {
+      inputLastName.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputCity.value) {
+      inputCity.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexCity.test(inputCity.value)) {
+      inputCity.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!inputPostalCode.value) {
+      inputPostalCode.classList.add("is-invalid");
+      valid = false;
+    } else if (!regexPostalCode.test(inputPostalCode.value)) {
+      inputPostalCode.classList.add("is-invalid");
+      valid = false;
+    }
+
+    if (!valid) {
+      // Si hay campos inválidos o vacíos, muestra la alerta
+      document.querySelector("#alert").classList.add("show");
+    } else {
+      // Si todos los campos son válidos y no están vacíos, envía el formulario
+      form.submit();
+    }
   });
 };

@@ -1,4 +1,8 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
-#missingFieldsAlert {
+
+.alert {
   display: none;
+}
+.alert.show {
+  display: block;
 }
